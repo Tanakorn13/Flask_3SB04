@@ -1,9 +1,12 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,redirect, url_for, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods = ['POST','GET'])
 def home():
+    if request.method == 'POST':
+        form = request.form['msg']
+        print("Message: %s"%(form))
     return render_template("index.html")
 
 @app.route('/about')
